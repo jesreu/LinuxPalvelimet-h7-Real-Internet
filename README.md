@@ -129,7 +129,7 @@ Tutkitaan vielä apachen lokeja mahdollisista yrityksistä.
     cd apache2/
     cat access.log
     
-Apachen lokeissa näkyy todella paljon get pyyntöjä itse osoitteeseen, mutta muutamana poimintana get pyynnöt osoitteisiin alampana. Voidaan vielä rajata lokia `cat access.log | grep 404` komenolla, jotta nähdään vain ne pyynnöt joissa ei ole oikea osoite. 
+Apachen lokeissa näkyy todella paljon get pyyntöjä itse osoitteeseen, mutta muutamana poimintana get pyynnöt osoitteisiin alampana. Voidaan vielä rajata lokia `cat access.log | grep 404` komenolla, jotta nähdään vain ne pyynnöt joihin palvelin ei vastaa.
 
     "/admin/config.php"
     "/aaa9"
