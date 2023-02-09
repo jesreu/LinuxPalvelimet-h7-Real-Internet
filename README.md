@@ -5,23 +5,10 @@
 
 ## x) Ensimmäiset askeleet palvelimella
  - Aseta palomuuri päälle, ja muista jättää ssh:n kokoinen aukko
-            sudo apt-get update
-            sudo apt-get install ufw
-            sudo ufw allow 22/tcp
  - Lisää joku ei root käyttäjä.
-        sudo adduser user
  - Sulje root käyttäjä ja poista root käyttäjän ssh login vaihtoehto.
-        sudo usermod --lock root
-        sudoedit /etc/ssh/sshd_config
-        # ...
-        PermitRootLogin no
-        # ...
-        sudo service ssh restart
  - Päivitä ohjelmisto, jotta järjestelmän haavoittuvaisuudet korjaantuvat.
-        sudo apt-get update
-        sudo apt-get upgrade
- - Apachen käyttöä varten palomuuri tarvitsee portin auki.
-        sudo ufw allow 80/tcp
+ - Apachen käyttöä varten palomuuri tarvitsee portin 80 auki.
  - Lisää palvelimelle nimi, jonkin nimipalvelun avulla. Esimerkiksi NameCheap.
 ## a)
 Oman virtuaalipalvelimen vuokraaminen digitalocean palvelusta. 
@@ -93,17 +80,36 @@ Päivitetään palvelimen ohjelmisto komennoilla
         sudo apt-get update
         sudo apt-get upgrade
         
-Luodaan reitti apachen käyttöä varten.
+Luodaan reitti apachen käyttöön kohtaan c).
 
         sudo ufw allow 80/tcp
         
 ## c)
-Asennetaan apache ja muutetaan testisivu.
+Apachen esimerkkisivun muuttaminen. Apache palvelimen asentaminen onnistuu komennoilla:
+
+    sudo apt-get update
+    sudo apt-get -y install apache2
+    sudo systemctl start apache2
+    
+Nyt voimme päivittää esimerkkisivun se onnistuu komennolla:
+
+    echo "Hei maailma!" | sudo tee /var/www/html/index.html
+
+Nyt voimme testata onnistuiko muutos curl komennolla
+
+    curl "http://localhost"
+    
+Voimme myös tarkistaa onnistuiko muutos menemällä selaimella palvelimen ip osoitteeseen. 
+
+![apachetoimi](https://user-images.githubusercontent.com/112503770/217799309-b64103a4-de3a-4fa7-a66c-7bd3c882c9b3.jpg)
 
 ## d)
 Nyt kokkiohjelman tyyliin näytän muutaman päivän päällä olleella palvelimella, miten etsiä merkkejä tunkeutumisyrityksistä.
 
     ssh root@(palvelimen ip)
+    
+![ssh_login](https://user-images.githubusercontent.com/112503770/217799774-eb25bd73-fdb1-45da-9046-26db3f1c854a.png
+
 
 Yhteyden ottaessa järjestelmä mukavasti kertoo viimeisimmän kirjautumisen, minkä perusteella palvelimelle ei ole päästy sisään, mutta tutkitaan tilannetta vielä tarkemmin.
 
@@ -112,7 +118,8 @@ Yhteyden ottaessa järjestelmä mukavasti kertoo viimeisimmän kirjautumisen, mi
     
 Logi on varsin pitkä, vaikka palvelin on ollut muutaman päivän päällä. Eroitellaan vielä hieman tietoa grep komennolla `cat auth.log | grep password`. Joka näyttää onnistuneet/epäonnistuneet salasana yritykset.
 
-kuve
+![murtautumis_yrityksia](https://user-images.githubusercontent.com/112503770/217799813-d81bc46e-209e-4b0a-891a-18491cfd16f0.png)
+
 
 Hakemalla logeista komennolla `cat auth.log | grep Accepted`. Löytyy kaikki onnistuneet yritykset, joilla palvelimelle on päästy sisään. Logit vastaavat omaa käyttöäni, joten kukaan ulkopuolinen ei ole päässyt sisään. Palvelimen kello on hieman eri ajassa kuin paikallinen aika, joten `date` komento on hyvä apu.
 
@@ -136,4 +143,5 @@ Ainakin edellä olevista pyynnöistä päätellen palvelimen tietoturvallisuus o
 
     https://terokarvinen.com/2023/linux-palvelimet-2023-alkukevat/
     https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/
+    https://linuxize.com/post/how-to-add-user-to-sudoers-in-debian/
     
