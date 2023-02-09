@@ -66,7 +66,9 @@ Lisätään ei root käyttäjä ja poistetaan root käyttäjän ssh kirjautumine
         sudo adduser jesse
         ssh jesse@(palvelimen ip)
 
-Kannattaa kokeilla luotua käyttäjää erillisessä komentoriviikkunnassa ssh komennolla ja sitten poistaa root-käyttäjän kirjautumisen. Kannatta myös tarkistaa, että luotu käyttäjä voi käyttää sudo komentoja. Mikäli ei ole oikeutta sudo komentoihin kannattaa root käyttäjällä käydä editoimassa `/etc/sudoers` tiedostoa. Muokkaamalla osioon User privilege specification: `käyttäjänimi   ALL=(ALL:ALL) ALL`. Tiedostoa voi muokata komennolla `sudo visudo sudoers`.
+Kannattaa kokeilla luotua käyttäjää erillisessä komentorivi-ikkunnassa ssh komennolla ja poistaa root-käyttäjän kirjautumisen. Tarkistaa, että luotu käyttäjä voi käyttää sudo komentoja. Mikäli ei ole oikeutta sudo komentoihin, root käyttäjällä voi käydä editoimassa `/etc/sudoers` tiedostoa. Muokkaamalla osioon User privilege specification: `käyttäjänimi   ALL=(ALL:ALL) ALL` asetat käyttäjänimi:selle käyttäjälle sudo oikeudet. Tiedostoa voi muokata komennolla `sudo visudo sudoers`.
+
+Ajetaan root käyttäjän sulkemiseksi komennot:
 
         sudo usermod --lock root
         sudoedit /etc/ssh/sshd_config
@@ -80,7 +82,7 @@ Päivitetään palvelimen ohjelmisto komennoilla
         sudo apt-get update
         sudo apt-get upgrade
         
-Luodaan reitti apachen käyttöön kohtaan c).
+Luodaan reitti apache palvelimen käyttöön kohtaa c) varten.
 
         sudo ufw allow 80/tcp
         
