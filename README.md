@@ -110,8 +110,7 @@ Nyt kokkiohjelman tyyliin näytän muutaman päivän päällä olleella palvelim
 
     ssh root@(palvelimen ip)
     
-![ssh_login](https://user-images.githubusercontent.com/112503770/217799774-eb25bd73-fdb1-45da-9046-26db3f1c854a.png
-
+![ssh_login](https://user-images.githubusercontent.com/112503770/217801168-b85cf43a-7e0e-4e5e-8f3e-214be5dcb1fb.png)
 
 Yhteyden ottaessa järjestelmä mukavasti kertoo viimeisimmän kirjautumisen, minkä perusteella palvelimelle ei ole päästy sisään, mutta tutkitaan tilannetta vielä tarkemmin.
 
