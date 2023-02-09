@@ -8,7 +8,7 @@
  - Lisää joku ei root käyttäjä.
  - Sulje root käyttäjä ja poista root käyttäjän ssh login vaihtoehto.
  - Päivitä ohjelmisto, jotta järjestelmän haavoittuvaisuudet korjaantuvat.
- - Apachen käyttöä varten palomuuri tarvitsee portin 80 auki.
+ - Apachen käyttöä varten portti 80 auki palomuurista.
  - Lisää palvelimelle nimi, jonkin nimipalvelun avulla. Esimerkiksi NameCheap.
 ## a)
 Oman virtuaalipalvelimen vuokraaminen digitalocean palvelusta. 
