@@ -5,9 +5,9 @@
 
 ## x) Ensimmäiset askeleet palvelimella
  - Aseta palomuuri päälle, ja muista jättää ssh:n kokoinen aukko
-        sudo apt-get update
-        sudo apt-get install ufw
-        sudo ufw allow 22/tcp
+            sudo apt-get update
+            sudo apt-get install ufw
+            sudo ufw allow 22/tcp
  - Lisää joku ei root käyttäjä.
         sudo adduser user
  - Sulje root käyttäjä ja poista root käyttäjän ssh login vaihtoehto.
